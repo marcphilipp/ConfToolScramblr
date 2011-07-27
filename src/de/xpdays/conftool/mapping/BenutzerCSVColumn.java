@@ -8,7 +8,7 @@ import org.supercsv.util.CSVContext;
 
 import de.xpdays.conftool.reader.CSVColumn;
 
-public enum UserCSVColumn implements CSVColumn {
+public enum BenutzerCSVColumn implements CSVColumn {
 
 	ID("personID", "id", new Unique(new ParseLong())),
 
@@ -20,7 +20,7 @@ public enum UserCSVColumn implements CSVColumn {
 	private final String csvHeader;
 	private final String beanProperty;
 
-	private UserCSVColumn(String csvHeader, String beanProperty, CellProcessor cellProcessor) {
+	private BenutzerCSVColumn(String csvHeader, String beanProperty, CellProcessor cellProcessor) {
 		this.csvHeader = csvHeader;
 		this.beanProperty = beanProperty;
 		this.cellProcessor = cellProcessor;
