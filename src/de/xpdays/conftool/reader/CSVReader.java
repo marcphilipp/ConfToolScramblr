@@ -2,6 +2,7 @@ package de.xpdays.conftool.reader;
 
 import static org.supercsv.prefs.CsvPreference.EXCEL_PREFERENCE;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,21 +17,21 @@ import org.supercsv.io.CsvBeanReader;
 
 public class CSVReader<T> {
 
-	private final String path;
+	private final File csvFile;
 	private final Class<T> beanClass;
 	private final CSVColumn[] columns;
 
 	private List<String> allHeaders;
 	private ArrayList<CellProcessor> allProcessors;
 
-	public CSVReader(String path, Class<T> beanClass, CSVColumn... columns) {
-		this.path = path;
+	public CSVReader(File csvFile, Class<T> beanClass, CSVColumn... columns) {
+		this.csvFile = csvFile;
 		this.beanClass = beanClass;
 		this.columns = columns;
 	}
 
 	public List<T> read() throws IOException {
-		Reader in = new InputStreamReader(new BOMInputStream(new FileInputStream(path)), "UTF-8");
+		Reader in = new InputStreamReader(new BOMInputStream(new FileInputStream(csvFile)), "UTF-8");
 		CsvBeanReader reader = new CsvBeanReader(in, EXCEL_PREFERENCE);
 		try {
 			readHeaders(reader);

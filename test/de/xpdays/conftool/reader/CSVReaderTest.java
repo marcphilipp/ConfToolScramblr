@@ -44,7 +44,7 @@ public class CSVReaderTest {
 		writeLines(csvFile, asList("foo,baz", "123,\"4,56\"", "abcd,defghijk"));
 		CSVColumn[] columns = { column("foo", "foo"), column("baz", "bar") };
 
-		List<DummyBean> result = new CSVReader<DummyBean>(csvFile.getAbsolutePath(), DummyBean.class, columns).read();
+		List<DummyBean> result = new CSVReader<DummyBean>(csvFile, DummyBean.class, columns).read();
 		assertThat(result.size(), is(2));
 		assertThat(result.get(0).getFoo(), is("123"));
 		assertThat(result.get(0).getBar(), is("4,56"));
