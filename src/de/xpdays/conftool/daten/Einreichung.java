@@ -1,12 +1,15 @@
-package de.xpdays.conftool.model;
+package de.xpdays.conftool.daten;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Einreichung {
 
 	private Long id;
-	private String typ, autoren, titel;
+	private String typ, titel;
+	private List<String> autoren, organisationen;
 	private Integer anzahlGutachten;
 	private Double durchschnittlicheBewertung;
 
@@ -26,12 +29,12 @@ public class Einreichung {
 		this.typ = typ;
 	}
 
-	public String getAutoren() {
+	public List<String> getAutoren() {
 		return autoren;
 	}
 
-	public void setAutoren(String authoren) {
-		this.autoren = authoren;
+	public void setAutoren(String[] authoren) {
+		this.autoren = Arrays.asList(authoren);
 	}
 
 	public String getTitel() {
@@ -40,6 +43,14 @@ public class Einreichung {
 
 	public void setTitel(String titel) {
 		this.titel = titel;
+	}
+
+	public List<String> getOrganisationen() {
+		return organisationen;
+	}
+
+	public void setOrganisationen(String[] organisationen) {
+		this.organisationen = Arrays.asList(organisationen);
 	}
 
 	public Integer getAnzahlGutachten() {

@@ -1,4 +1,4 @@
-package de.xpdays.conftool.model;
+package de.xpdays.conftool.daten;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

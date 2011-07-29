@@ -1,4 +1,4 @@
-package de.xpdays.conftool.model;
+package de.xpdays.conftool.daten;
 
 public class Benutzer {
 

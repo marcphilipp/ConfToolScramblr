@@ -21,8 +21,8 @@ public class FindMostRecentFileTest {
 		File mostRecentFileByName = folder.newFile("papers_2011-07-27_22-34-08.csv");
 		folder.newFile("papers_2011-07-27_22-34-05.csv");
 
-		Scramblr scramblr = new Scramblr(folder.getRoot());
-		assertThat(scramblr.findMostRecentFile("papers"), is(mostRecentFileByName));
+		Repository repository = new Repository(folder.getRoot());
+		assertThat(repository.findMostRecentFile("papers"), is(mostRecentFileByName));
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class FindMostRecentFileTest {
 		folder.newFile("authors_2011-07-27_22-34-08.csv");
 		folder.newFile("1papers_2011-07-27_22-34-05.csv");
 
-		Scramblr scramblr = new Scramblr(folder.getRoot());
-		assertThat(scramblr.findMostRecentFile("papers"), is(nullValue()));
+		Repository repository = new Repository(folder.getRoot());
+		assertThat(repository.findMostRecentFile("papers"), is(nullValue()));
 	}
 }
