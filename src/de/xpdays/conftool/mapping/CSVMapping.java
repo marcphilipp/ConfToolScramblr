@@ -34,9 +34,10 @@ public class CSVMapping {
 	public static CSVColumnBuilder forAusgewaehlteEinreichungen() {
 		return builder() //
 				.add("Bewertung", "durchschnittlicheBewertung", new Token("", Double.NaN, new ParseDouble())) //
-				.add("Anzahl Gutachten", "anzahlGutachten", new Optional(new ParseInt())) //
+				.add("Gutachten", "anzahlGutachten", new Optional(new ParseInt())) //
 				.add("Status", "statusText", new NotNull()) //
 				.add("ID", "id", id()) //
+				.add("Dauer", "dauerInMinuten", new NotNull()) //
 				.add("Sessiontyp", "typ", new NotNull()) //
 				.add("Autoren", "autoren", new AutorenListe()) //
 				.add("Titel", "titel", new NotNull()) //
