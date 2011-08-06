@@ -1,9 +1,11 @@
 package de.xpdays.conftool;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -41,8 +43,22 @@ public class Repository {
 	}
 
 	public void writeAusgewaehlteEinreichungen(Iterable<AusgewaehlteEinreichung> einreichungen) throws IOException {
-		File file = new File(directory, "session.csv");
-		CSVColumnBuilder mapping = CSVMapping.forAusgewaehlteEinreichungen();
+		write(einreichungen, CSVMapping.forAusgewaehlteEinreichungen(), "session.csv");
+	}
+
+	public void writeSessionTexte(Iterable<AusgewaehlteEinreichung> einreichungen) throws IOException {
+		write(einreichungen, CSVMapping.forSessionTexte(), "sessionTexte.csv");
+	}
+
+	protected File findMostRecentFile(String prefix) {
+		String[] fileNames = directory.list(new PrefixFileFilter(prefix));
+		Arrays.sort(fileNames);
+		return fileNames.length > 0 ? new File(directory, fileNames[fileNames.length - 1]) : null;
+	}
+
+	private void write(Iterable<AusgewaehlteEinreichung> einreichungen, CSVColumnBuilder mapping, String filename)
+			throws UnsupportedEncodingException, FileNotFoundException, IOException {
+		File file = new File(directory, filename);
 		CSVColumn[] columns = mapping.toColumns();
 		String[] nameMapping = CSVMapping.toBeanProperties(columns);
 		CsvBeanWriter writer = new CsvBeanWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"),
@@ -55,12 +71,6 @@ public class Repository {
 		} finally {
 			writer.close();
 		}
-	}
-
-	protected File findMostRecentFile(String prefix) {
-		String[] fileNames = directory.list(new PrefixFileFilter(prefix));
-		Arrays.sort(fileNames);
-		return fileNames.length > 0 ? new File(directory, fileNames[fileNames.length - 1]) : null;
 	}
 
 }

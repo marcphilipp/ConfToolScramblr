@@ -21,13 +21,14 @@ public class Scramblr {
 	public void bestimmeSessions() throws IOException {
 		sessionAuswahl.bestimmeSessions(repository.readEinreichungen());
 		repository.writeAusgewaehlteEinreichungen(sessionAuswahl);
+		repository.writeSessionTexte(sessionAuswahl);
 	}
 
 	public static void main(String[] args) throws Exception {
 		Repository repository = new Repository(new File("data"));
 
 		SessionAuswahl sessionAuswahl = new SessionAuswahl(new PasstInZeitrahmen(60 * 4 * 8),
-				new MaximaleSessionsProAutor(2), new MaximaleSessionsProOrganisation(7));
+				new MaximaleSessionsProAutor(1), new MaximaleSessionsProOrganisation(8));
 
 		Scramblr scramblr = new Scramblr(repository, sessionAuswahl);
 		scramblr.bestimmeSessions();

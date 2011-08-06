@@ -2,6 +2,8 @@ package de.xpdays.conftool.daten;
 
 import java.util.List;
 
+import com.google.common.base.Joiner;
+
 public class AusgewaehlteEinreichung {
 
 	private final Einreichung einreichung;
@@ -54,5 +56,10 @@ public class AusgewaehlteEinreichung {
 
 	public int getDauerInMinuten() {
 		return einreichung.getDauerInMinuten();
+	}
+
+	public String getSessionText() {
+		return Joiner.on("; ").join(getAutoren()) + "\n" + getTitel() + "\n#" + getId() + " - "
+				+ getDurchschnittlicheBewertung() + " (" + getAnzahlGutachten() + ") - " + getTyp();
 	}
 }

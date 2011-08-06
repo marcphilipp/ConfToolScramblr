@@ -14,7 +14,7 @@ public class PasstInZeitrahmen implements AkzeptanzKriterium {
 
 	@Override
 	public EinreichungsStatus akzeptiert(SessionAuswahl auswahl, Einreichung einreichung) {
-		if (akzeptierteMinuten > verfuegbareMinuten) {
+		if (akzeptierteMinuten >= verfuegbareMinuten) {
 			return EinreichungsStatus.abgelehnt("Zeitlimit überschritten (" + verfuegbareMinuten + " Minuten)");
 		}
 		return EinreichungsStatus.akzeptiert();
