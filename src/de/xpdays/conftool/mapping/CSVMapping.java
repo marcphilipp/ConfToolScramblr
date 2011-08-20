@@ -50,6 +50,10 @@ public class CSVMapping {
 				.add("Session", "sessionText", new NotNull());
 	}
 
+	public static CSVColumn[] forAkzeptierteSessions() {
+		return builder().add("ID", "value", id()).toColumns();
+	}
+
 	private static Unique id() {
 		return new Unique(new ParseLong());
 	}

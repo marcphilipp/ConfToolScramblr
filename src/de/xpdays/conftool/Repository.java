@@ -17,6 +17,7 @@ import org.supercsv.prefs.CsvPreference;
 import de.xpdays.conftool.daten.AusgewaehlteEinreichung;
 import de.xpdays.conftool.daten.Benutzer;
 import de.xpdays.conftool.daten.Einreichung;
+import de.xpdays.conftool.daten.EinreichungId;
 import de.xpdays.conftool.daten.HighestBewertungFirst;
 import de.xpdays.conftool.mapping.CSVColumnBuilder;
 import de.xpdays.conftool.mapping.CSVMapping;
@@ -40,6 +41,11 @@ public class Repository {
 				CSVMapping.forEinreichungen()).read();
 		Collections.sort(einreichungen, new HighestBewertungFirst());
 		return einreichungen;
+	}
+
+	public List<EinreichungId> readAkzeptierteSessions() throws IOException {
+		return new CSVReader<EinreichungId>(findMostRecentFile("accepted_papers"), EinreichungId.class,
+				CSVMapping.forAkzeptierteSessions()).read();
 	}
 
 	public void writeAusgewaehlteEinreichungen(Iterable<AusgewaehlteEinreichung> einreichungen) throws IOException {
