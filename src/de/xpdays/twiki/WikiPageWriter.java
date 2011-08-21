@@ -19,10 +19,31 @@ public class WikiPageWriter {
 	public void writeWikiPage(Einreichung einreichung) throws IOException {
 		String pageName = new WikiWordConverter().toWikiWord(einreichung.getTitel());
 
-		String pageContent = "---+ " + einreichung.getTitel();
+		String pageContent = new WikiPageBuilder()//
+				.appendParagraph("<noautolink>")
+				//
+				.appendHeading1(einreichung.getTitel())//
+				.appendParagraph(einreichung.getTyp())
+				//
+				.appendHeading2("Abstract")//
+				.appendParagraph(changeListMarkup(einreichung.getZusammenfassung()))
+				//
+				.appendHeading2("Speaker")//
+				.appendParagraphSeparatedBy("; ", einreichung.getAutoren())//
+				//
+				.appendParagraph("</noautolink>")//
+				.toString();
 
 		File targetFile = new File(targetFolder, pageName + ".txt");
 		Files.write(pageContent, targetFile, Charsets.UTF_8);
+	}
+
+	private String changeListMarkup(String confToolMarkedUpText) {
+		String wikiMarkedUpText = confToolMarkedUpText.replaceAll("\n[*-] ", "\n   * ");
+		if (wikiMarkedUpText.startsWith("- ") || wikiMarkedUpText.startsWith("* ")) {
+			wikiMarkedUpText = wikiMarkedUpText.replaceFirst("[*-] ", "   * ");
+		}
+		return wikiMarkedUpText;
 	}
 
 }

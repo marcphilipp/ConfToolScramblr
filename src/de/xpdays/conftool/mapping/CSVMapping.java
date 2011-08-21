@@ -1,5 +1,6 @@
 package de.xpdays.conftool.mapping;
 
+import org.supercsv.cellprocessor.ConvertNullTo;
 import org.supercsv.cellprocessor.Optional;
 import org.supercsv.cellprocessor.ParseDouble;
 import org.supercsv.cellprocessor.ParseInt;
@@ -28,7 +29,8 @@ public class CSVMapping {
 				.add("title", "titel", new NotNull()) //
 				.add("reviews_received", "anzahlGutachten", new Optional(new ParseInt())) //
 				.add("score_average", "durchschnittlicheBewertung", new Token("", Double.NaN, new ParseDouble())) //
-				.add("organisations", "organisationen", new OrganisationenListe()).toColumns();
+				.add("organisations", "organisationen", new OrganisationenListe())//
+				.add("abstract", "zusammenfassung", new ConvertNullTo("")).toColumns();
 	}
 
 	public static CSVColumnBuilder forAusgewaehlteEinreichungen() {

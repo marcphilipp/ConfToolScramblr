@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Einreichung {
 
 	private Long id;
-	private String typ, titel;
+	private String typ, titel, zusammenfassung;
 	private List<String> autoren, organisationen;
 	private Integer anzahlGutachten;
 	private Double durchschnittlicheBewertung;
@@ -43,6 +43,14 @@ public class Einreichung {
 
 	public void setTitel(String titel) {
 		this.titel = titel;
+	}
+
+	public String getZusammenfassung() {
+		return zusammenfassung;
+	}
+
+	public void setZusammenfassung(String zusammenfassung) {
+		this.zusammenfassung = zusammenfassung;
 	}
 
 	public List<String> getOrganisationen() {
