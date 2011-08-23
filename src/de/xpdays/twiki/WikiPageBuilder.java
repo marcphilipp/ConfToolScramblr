@@ -34,8 +34,8 @@ public class WikiPageBuilder {
 		return this;
 	}
 
-	public WikiPageBuilder openTableCell() {
-		return append("| ");
+	public WikiPageBuilder newTableCell() {
+		return append(" | ");
 	}
 
 	public WikiPageBuilder append(String text) {
@@ -47,8 +47,8 @@ public class WikiPageBuilder {
 		return append("[[").append(target).append("][").append(linkText).append("]]");
 	}
 
-	public WikiPageBuilder closeTableCell() {
-		return append(" |");
+	public WikiPageBuilder endTableRow() {
+		return append(" |").newLine();
 	}
 
 	public WikiPageBuilder newLine() {
@@ -61,6 +61,10 @@ public class WikiPageBuilder {
 
 	public WikiPageBuilder appendBold(String text) {
 		return append("*").append(text).append("*");
+	}
+
+	public WikiPageBuilder startTableRow() {
+		return append("| ");
 	}
 
 }

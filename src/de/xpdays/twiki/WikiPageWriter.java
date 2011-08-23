@@ -47,15 +47,16 @@ public class WikiPageWriter {
 	public void writeIndexPage() throws IOException {
 		WikiPageBuilder builder = new WikiPageBuilder();
 		builder.appendHeading1("Programm");
-		builder.openTableCell().appendBold("Header").closeTableCell().newLine();
+		builder.startTableRow().appendBold("ID").newTableCell().appendBold("Session").endTableRow();
 		for (Entry<String, Einreichung> entry : index.entrySet()) {
 			String sessionWikiPage = entry.getKey();
 			Einreichung session = entry.getValue();
-			builder.openTableCell();
+			builder.startTableRow().append("#" + session.getId());
+			builder.newTableCell();
 			builder.append(session.getTyp()).lineBreak();
 			builder.appendSeparatedBy(", ", session.getAutorenVornameNachname()).lineBreak();
 			builder.append("%TITLE%").appendLink(sessionWikiPage, session.getTitel()).append("%ELTIT%");
-			builder.closeTableCell().newLine();
+			builder.endTableRow();
 		}
 		builder.newParagraph().appendParagraph("<!-- Variablen für Auszeichnungen bestimmter Typen");
 		builder.append("   * Set TITLE = <span style='font-size: 1.3em;'>").newLine();
