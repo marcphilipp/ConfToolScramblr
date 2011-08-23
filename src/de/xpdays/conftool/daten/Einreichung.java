@@ -1,6 +1,7 @@
 package de.xpdays.conftool.daten;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +32,22 @@ public class Einreichung {
 
 	public List<String> getAutoren() {
 		return autoren;
+	}
+
+	public List<String> getAutorenVornameNachname() {
+		List<String> result = new LinkedList<String>();
+		for (String autor : autoren) {
+			int index = autor.indexOf(",");
+			if (index < 0 || index > autor.length() - 1) {
+				result.add(autor);
+			} else {
+				String vorname = autor.substring(index + 1).trim();
+				String nachname = autor.substring(0, index).trim();
+				String name = (vorname + " " + nachname).trim();
+				result.add(name);
+			}
+		}
+		return result;
 	}
 
 	public void setAutoren(String[] authoren) {

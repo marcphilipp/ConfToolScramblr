@@ -2,6 +2,7 @@ package de.xpdays.conftool.daten;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.matchers.JUnitMatchers.hasItems;
 
 import org.junit.Test;
 
@@ -23,6 +24,14 @@ public class EinreichungTest {
 		Einreichung einreichung = new Einreichung();
 		einreichung.setTyp("Murks");
 		einreichung.getDauerInMinuten();
+	}
+
+	@Test
+	public void autorenVornameVorNachname() throws Exception {
+		Einreichung einreichung = new Einreichung();
+		einreichung.setAutoren(new String[] { "Marley, Bob", "Doe", "Mustermann, ", "Lust, Keine, von" });
+		assertThat(einreichung.getAutorenVornameNachname(),
+				hasItems("Bob Marley", "Doe", "Mustermann", "Keine, von Lust"));
 	}
 
 }

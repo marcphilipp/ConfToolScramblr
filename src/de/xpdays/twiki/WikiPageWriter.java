@@ -22,16 +22,20 @@ public class WikiPageWriter {
 	public void writeWikiPage(Einreichung einreichung) throws IOException {
 		String pageName = new WikiWordConverter().toWikiWord(einreichung.getTitel());
 
-		String pageContent = new WikiPageBuilder()//
+		String pageContent = new WikiPageBuilder()
+				//
 				.appendParagraph("<noautolink>")
 				//
-				.appendHeading1(einreichung.getTitel())//
+				.appendHeading1(einreichung.getTitel())
+				//
 				.appendParagraph(einreichung.getTyp())
 				//
-				.appendHeading2("Abstract")//
+				.appendHeading2("Abstract")
+				//
 				.appendParagraph(changeListMarkup(einreichung.getZusammenfassung()))
 				//
-				.appendHeading2("Speaker").appendSeparatedBy("; ", einreichung.getAutoren()).newParagraph()
+				.appendHeading2("Speaker").appendSeparatedBy(", ", einreichung.getAutorenVornameNachname())
+				.newParagraph()
 				//
 				.appendParagraph("</noautolink>")//
 				.toString();
@@ -49,7 +53,7 @@ public class WikiPageWriter {
 			Einreichung session = entry.getValue();
 			builder.openTableCell();
 			builder.append(session.getTyp()).lineBreak();
-			builder.appendSeparatedBy("; ", session.getAutoren()).lineBreak();
+			builder.appendSeparatedBy(", ", session.getAutorenVornameNachname()).lineBreak();
 			builder.append("%TITLE%").appendLink(sessionWikiPage, session.getTitel()).append("%ELTIT%");
 			builder.closeTableCell().newLine();
 		}
