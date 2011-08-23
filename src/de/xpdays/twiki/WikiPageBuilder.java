@@ -4,7 +4,8 @@ import com.google.common.base.Joiner;
 
 public class WikiPageBuilder {
 
-	private static final String PARAGRAPH_SEPARATOR = "\n\n";
+	private static final String NEW_LINE = "\n";
+	private static final String PARAGRAPH_SEPARATOR = NEW_LINE + NEW_LINE;
 	private final StringBuilder builder = new StringBuilder();
 
 	@Override
@@ -13,24 +14,53 @@ public class WikiPageBuilder {
 	}
 
 	public WikiPageBuilder appendHeading1(String heading) {
-		builder.append("---+ ").append(heading).append(PARAGRAPH_SEPARATOR);
-		return this;
+		return append("---+ ").append(heading).newParagraph();
 	}
 
 	public WikiPageBuilder appendHeading2(String heading) {
-		builder.append("---++ ").append(heading).append(PARAGRAPH_SEPARATOR);
-		return this;
+		return append("---++ ").append(heading).newParagraph();
+	}
+
+	public WikiPageBuilder newParagraph() {
+		return append(PARAGRAPH_SEPARATOR);
 	}
 
 	public WikiPageBuilder appendParagraph(String text) {
-		builder.append(text).append(PARAGRAPH_SEPARATOR);
+		return append(text).newParagraph();
+	}
+
+	public WikiPageBuilder appendSeparatedBy(String separator, Iterable<?> parts) {
+		Joiner.on(separator).appendTo(builder, parts);
 		return this;
 	}
 
-	public WikiPageBuilder appendParagraphSeparatedBy(String separator, Iterable<?> parts) {
-		Joiner.on(separator).appendTo(builder, parts);
-		builder.append(PARAGRAPH_SEPARATOR);
+	public WikiPageBuilder openTableCell() {
+		return append("| ");
+	}
+
+	public WikiPageBuilder append(String text) {
+		builder.append(text);
 		return this;
+	}
+
+	public WikiPageBuilder appendLink(String target, String linkText) {
+		return append("[[").append(target).append("][").append(linkText).append("]]");
+	}
+
+	public WikiPageBuilder closeTableCell() {
+		return append(" |");
+	}
+
+	public WikiPageBuilder newLine() {
+		return append(NEW_LINE);
+	}
+
+	public WikiPageBuilder lineBreak() {
+		return append("<br />");
+	}
+
+	public WikiPageBuilder appendBold(String text) {
+		return append("*").append(text).append("*");
 	}
 
 }

@@ -25,6 +25,7 @@ public class WikiPageGenerator {
 			Einreichung einreichung = findeEinreichungMitId(id, alleEinreichungen);
 			writer.writeWikiPage(einreichung);
 		}
+		writer.writeIndexPage();
 	}
 
 	private Einreichung findeEinreichungMitId(EinreichungId id, List<Einreichung> alleEinreichungen) {
