@@ -8,10 +8,13 @@ dependencies {
 	compile "commons-io:commons-io:2.0.1"
 	compile "com.google.guava:guava:r09"
 	compile fileTree(dir: 'lib', include: '*.jar')
-	testCompile "junit:junit:4.8.2"
+	testCompile "junit:junit:4.9"
 }
 
 repositories {
 	mavenCentral()
 }
 
+eclipseClasspath {
+	variables 'GRADLE_CACHE': new File(gradle.getStartParameter().getGradleUserHomeDir(), "cache")
+}
