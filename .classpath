@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/SuperCSV-with_src-1.52.jar"/>
-	<classpathentry kind="lib" path="lib/spiffy-with_source-all-0.05.jar"/>
-	<classpathentry kind="lib" path="lib/commons-io-2.0.1.jar" sourcepath="lib/commons-io-2.0.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/guava-r09.jar" sourcepath="lib/guava-src-r09.zip"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
 	<classpathentry kind="output" path="bin"/>
+	<classpathentry sourcepath="/Users/mphilipp/.gradle/cache/junit/junit/sources/junit-4.8.2-sources.jar" kind="lib" path="/Users/mphilipp/.gradle/cache/junit/junit/jars/junit-4.8.2.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/mphilipp/.gradle/cache/com.google.guava/guava/sources/guava-r09-sources.jar" kind="lib" path="/Users/mphilipp/.gradle/cache/com.google.guava/guava/jars/guava-r09.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/mphilipp/Repositories/ConfToolScramblr/lib/spiffy-with_source-all-0.05.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/mphilipp/.gradle/cache/commons-io/commons-io/sources/commons-io-2.0.1-sources.jar" kind="lib" path="/Users/mphilipp/.gradle/cache/commons-io/commons-io/jars/commons-io-2.0.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/Users/mphilipp/Repositories/ConfToolScramblr/lib/SuperCSV-with_src-1.52.jar" exported="true"/>
 </classpath>

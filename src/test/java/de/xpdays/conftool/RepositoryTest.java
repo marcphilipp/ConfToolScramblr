@@ -14,7 +14,7 @@ import de.xpdays.conftool.daten.Einreichung;
 
 public class RepositoryTest {
 
-	Repository repository = new Repository(new File("testdata"));
+	Repository repository = new Repository(new File("src/test/resources"));
 
 	@Test
 	public void readBenutzer() throws Exception {
