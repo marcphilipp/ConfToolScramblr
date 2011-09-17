@@ -51,18 +51,26 @@ public class WikiPageWriter {
 		for (Entry<String, Einreichung> entry : index.entrySet()) {
 			String sessionWikiPage = entry.getKey();
 			Einreichung session = entry.getValue();
-			builder.startTableRow().append("#" + session.getId());
-			builder.newTableCell();
-			builder.append(session.getTyp()).lineBreak();
-			builder.appendSeparatedBy(", ", session.getAutorenVornameNachname()).lineBreak();
-			builder.append("%TITLE%").appendLink(sessionWikiPage, session.getTitel()).append("%ELTIT%");
-			builder.endTableRow();
+			writeSessionRow(builder, sessionWikiPage, session);
 		}
+		writeVariables(builder);
+		writeWikiPage("ProgrammKopiervorlagen", builder.toString());
+	}
+
+	private void writeSessionRow(WikiPageBuilder builder, String sessionWikiPage, Einreichung session) {
+		builder.startTableRow().append("#" + session.getId());
+		builder.newTableCell();
+		builder.append(session.getTyp()).lineBreak();
+		builder.appendSeparatedBy(", ", session.getAutorenVornameNachname()).lineBreak();
+		builder.append("%TITLE%").appendLink(sessionWikiPage, session.getTitel()).append("%ELTIT%");
+		builder.endTableRow();
+	}
+
+	private void writeVariables(WikiPageBuilder builder) {
 		builder.newParagraph().appendParagraph("<!-- Variablen für Auszeichnungen bestimmter Typen");
 		builder.append("   * Set TITLE = <span style='font-size: 1.3em;'>").newLine();
 		builder.append("   * Set ELTIT = </span>").newLine();
 		builder.appendParagraph("-->");
-		writeWikiPage("ProgrammKopiervorlagen", builder.toString());
 	}
 
 	private void addToIndex(Einreichung einreichung, String pageName) {

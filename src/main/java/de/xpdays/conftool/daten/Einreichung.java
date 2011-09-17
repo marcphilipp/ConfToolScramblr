@@ -37,17 +37,19 @@ public class Einreichung {
 	public List<String> getAutorenVornameNachname() {
 		List<String> result = new LinkedList<String>();
 		for (String autor : autoren) {
-			int index = autor.indexOf(",");
-			if (index < 0 || index > autor.length() - 1) {
-				result.add(autor);
-			} else {
-				String vorname = autor.substring(index + 1).trim();
-				String nachname = autor.substring(0, index).trim();
-				String name = (vorname + " " + nachname).trim();
-				result.add(name);
-			}
+			result.add(convertToVornameNachname(autor));
 		}
 		return result;
+	}
+
+	private String convertToVornameNachname(String autor) {
+		int index = autor.indexOf(",");
+		if (index < 0 || index > autor.length() - 1) {
+			return autor;
+		}
+		String vorname = autor.substring(index + 1).trim();
+		String nachname = autor.substring(0, index).trim();
+		return (vorname + " " + nachname).trim();
 	}
 
 	public void setAutoren(String[] authoren) {
