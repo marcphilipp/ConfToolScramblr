@@ -21,7 +21,6 @@ public class Scramblr {
 	public void bestimmeSessions() throws IOException {
 		sessionAuswahl.bestimmeSessions(repository.readEinreichungen());
 		repository.writeAusgewaehlteEinreichungen(sessionAuswahl);
-		repository.writeSessionTexte(sessionAuswahl);
 	}
 
 	public static void main(String[] args) throws Exception {

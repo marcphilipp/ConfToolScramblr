@@ -52,10 +52,6 @@ public class Repository {
 		write(einreichungen, CSVMapping.forAusgewaehlteEinreichungen(), "session.csv");
 	}
 
-	public void writeSessionTexte(Iterable<AusgewaehlteEinreichung> einreichungen) throws IOException {
-		write(einreichungen, CSVMapping.forSessionTexte(), "sessionTexte.csv");
-	}
-
 	protected File findMostRecentFile(String prefix) {
 		String[] fileNames = directory.list(new PrefixFileFilter(prefix));
 		Arrays.sort(fileNames);

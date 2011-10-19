@@ -46,12 +46,6 @@ public class CSVMapping {
 				.add("Organisationen", "organisationen", new OrganisationenListe());
 	}
 
-	public static CSVColumnBuilder forSessionTexte() {
-		return builder() //
-				.add("ID", "id", id()) //
-				.add("Session", "sessionText", new NotNull());
-	}
-
 	public static CSVColumn[] forAkzeptierteSessions() {
 		return builder().add("ID", "value", id()).toColumns();
 	}
